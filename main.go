@@ -82,7 +82,7 @@ func main() {
 		return
 	}
 
-	EmailTo := "jeff.otoni@s3wf.com.br"
+	EmailTo := "your@email.com"
 
 	Html := "<h1>Test send email....</h1>"
 
