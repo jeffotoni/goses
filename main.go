@@ -20,73 +20,18 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
+	prof "github.com/jeffotoni/goses/pkg/"
 )
-
-type profile struct {
-	from          *string
-	replyTo       []*string
-	returnPath    *string
-	returnPathArn *string
-	sourceArn     *string
-}
-
-type Email struct {
-	ses      *ses.SES
-	profiles map[string]*profile
-}
-
-// Setup a profile to use with Send
-func (this *Email) SetupProfile(name string, from string, replyTo []string, returnPath string, returnPathArn string, sourceArn string) bool {
-
-	this.profiles = map[string]*profile{}
-
-	this.profiles[name] = &profile{
-
-		from:          aws.String(from),
-		replyTo:       []*string{},
-		returnPath:    aws.String(returnPath),
-		returnPathArn: aws.String(returnPathArn),
-		sourceArn:     aws.String(sourceArn),
-	}
-
-	for _, d := range replyTo {
-		this.profiles[name].replyTo = append(this.profiles[name].replyTo, aws.String(d))
-	}
-
-	return true
-}
 
 func main() {
 
-	FM := "xxxx@domain.com"
-	INFO := "Mail example"
-
-	FromEmail := FM
-	From := INFO + " <" + FM + ">"
-	ReturnPathx := "arn:aws:ses:us-east-1:873761630739:identity/" + FromEmail
-	ReturnPathxArm := "arn:aws:ses:us-east-1:873761630739:identity/" + FromEmail
-
-	// config email
-	//
-	sender := new(Email)
-	sender.SetupProfile("default", From, []string{FromEmail},
-		FromEmail,
-		ReturnPathx,
-		ReturnPathxArm)
-
-	pr := sender.profiles["default"]
-
-	if pr == nil {
-
-		fmt.Println("Error profiles: ", pr)
-		return
-	}
-
-	EmailTo := "your@email.com"
-
+	From := "xx@domain.com"
+	Info := "Test send email for me"
+	EmailTo := "your@mail.com"
 	Html := "<h1>Test send email....</h1>"
-
 	Subject := "Test send email to me"
+
+	pr := prof.SetProfile(From, Info)
 
 	params := &ses.SendEmailInput{
 
