@@ -56,6 +56,29 @@ func (this *Email) SetupProfile(name string, from string, replyTo []string, retu
 
 func func main() {
 	
+	FM := "xxxx@domain.com"
+
+	FromEmail := FM
+	From := VetorConf["config_info_email"] + " <" + FM + ">"
+	ReturnPathx := "arn:aws:ses:us-east-1:873761630739:identity/" + FromEmail
+	ReturnPathxArm := "arn:aws:ses:us-east-1:873761630739:identity/" + FromEmail
+
+	// config email
+	//
+	sender := new(Email)
+	sender.SetupProfile("default", From, []string{FromEmail},
+		FromEmail,
+		ReturnPathx,
+		ReturnPathxArm)
+
+	pr := sender.profiles["default"]
+
+	if pr == nil {
+
+		fmt.Println("Error profiles: ", pr)
+		continue
+	}
+
 	EmailTo := "jeff.otoni@s3wf.com.br"
 
 	Html 	:= "<h1>Test send email....</h1>"
