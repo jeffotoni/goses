@@ -1,2 +1,3 @@
 # goses
-Pacote para enviar emails através de seus serviços (Simple Email Service) da AWS.
+
+Sending emails with aws ses, a package to facilitate the understanding and use of aws sdk for sending emails.
