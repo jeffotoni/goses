@@ -20,7 +20,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
-	prof "github.com/jeffotoni/goses/pkg/"
+	prof "github.com/jeffotoni/goses/pkg/profile"
 )
 
 func main() {
