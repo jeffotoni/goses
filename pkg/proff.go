@@ -77,7 +77,7 @@ func (this *Email) SetSetupProfile(name string, from string, replyTo []string, r
 //
 //
 //
-func (this *Email) SetProfile(from string, info string) *Email {
+func SetProfile(from string, info string) *profile {
 
 	From := info + " <" + from + ">"
 	ReturnPathx := "arn:aws:ses:us-east-1:873761630739:identity/" + from
@@ -88,12 +88,16 @@ func (this *Email) SetProfile(from string, info string) *Email {
 	//
 	sender := new(Email)
 
+	//fmt.Println(sender)
+
 	sender.SetSetupProfile("default", From, []string{from},
 		from,
 		ReturnPathx,
 		ReturnPathxArm)
 
 	pr := sender.profiles["default"]
+
+	fmt.Println("From: ", pr.from)
 
 	if pr == nil {
 

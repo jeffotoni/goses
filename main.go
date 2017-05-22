@@ -14,24 +14,32 @@
 
 package main
 
+//github.com/jeffotoni/goses/pkg
 import (
 	"fmt"
+	"os"
+
+	proff "./pkg"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
-	proff "github.com/jeffotoni/goses/pkg/proff"
 )
 
 func main() {
 
 	From := "xx@domain.com"
 	Info := "Test send email for me"
+
 	EmailTo := "your@mail.com"
 	Html := "<h1>Test send email....</h1>"
 	Subject := "Test send email to me"
 
 	pr := proff.SetProfile(From, Info)
+
+	fmt.Println(pr)
+
+	os.Exit(1)
 
 	params := &ses.SendEmailInput{
 
@@ -67,11 +75,11 @@ func main() {
 			},
 		},
 
-		Source:           pr.from,
-		ReplyToAddresses: pr.replyTo,
-		ReturnPath:       pr.returnPath,
-		ReturnPathArn:    pr.returnPathArn,
-		SourceArn:        pr.sourceArn,
+		// Source:           pr.from,
+		// ReplyToAddresses: pr.replyTo,
+		// ReturnPath:       pr.returnPath,
+		// ReturnPathArn:    pr.returnPathArn,
+		// SourceArn:        pr.sourceArn,
 
 		//Source: aws.String(tmp_from),
 		//, // Required
