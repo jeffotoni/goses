@@ -20,7 +20,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ses"
-	prof "github.com/jeffotoni/goses/pkg/profile"
+	proff "github.com/jeffotoni/goses/pkg/proff"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 	Html := "<h1>Test send email....</h1>"
 	Subject := "Test send email to me"
 
-	pr := prof.SetProfile(From, Info)
+	pr := proff.SetProfile(From, Info)
 
 	params := &ses.SendEmailInput{
 

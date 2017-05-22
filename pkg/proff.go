@@ -12,7 +12,7 @@
 *
  */
 
-package profile
+package proff
 
 import (
 	"fmt"
@@ -86,7 +86,7 @@ func (this *Email) SetProfile(from string, info string) *Email {
 	//
 	// config email
 	//
-	sender := new(this)
+	sender := new(&this)
 
 	sender.SetSetupProfile("default", From, []string{from},
 		from,
