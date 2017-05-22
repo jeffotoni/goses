@@ -86,7 +86,7 @@ func (this *Email) SetProfile(from string, info string) *Email {
 	//
 	// config email
 	//
-	sender := new(*this)
+	sender := new(Email)
 
 	sender.SetSetupProfile("default", From, []string{from},
 		from,
