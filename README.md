@@ -27,7 +27,7 @@ S := gses.SetProfile("us-east-1", "xxxxxxxxx", "email@domain.com", "Lets test se
 // Html 		:= "<html><body><h1>test html context</h1></body></html>"
 // Subject 		:= "Your message title"
 //
-err := S.Send("emailTo@domain.com", "<h1>Test send email....</h1>", "Test send email to me goses 1000")
+err := S.Send("emailTo@domain.com", "<h1>Test send email....</h1>", "Test send email to me goses")
 if err != nil {
 
 	fmt.Printf("Error %s => %v\n", err)
