@@ -1,0 +1,8 @@
+	# perfil gawk, criado Thu Jun  8 16:45:55 2017
+
+	# Regra(s)
+
+	{
+		print $3 " " $4
+	}
+
