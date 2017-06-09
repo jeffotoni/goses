@@ -22,10 +22,6 @@ In order for your email to be sent successfully using the aws sdk you need to ha
 //
 S := gses.SetProfile("us-east-1", "xxxxxxxxx", "email@domain.com", "Lets test send email ses..")
 
-```
-
-```go
-
 //
 // EmailTo 		:= "emailTo@domain.com"
 // Html 		:= "<html><body><h1>test html context</h1></body></html>"
