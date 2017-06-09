@@ -14,9 +14,11 @@
 
 package main
 
-import gses "github.com/jeffotoni/goses/pkg"
-
-//import gses "./pkg"
+import (
+	"fmt"
+	import gses "github.com/jeffotoni/goses/pkg"
+	//gses "./pkg"
+)
 
 func main() {
 
@@ -32,5 +34,9 @@ func main() {
 	// Html 		:= "<html><body><h1>test html context</h1></body></html>"
 	// Subject 		:= "Your message title"
 	//
-	S.Send("emailTo@domain.com", "<h1>Test send email....</h1>", "Test send email to me goses 1000")
+	err := S.Send("emailTo@domain.com", "<h1>Test send email....</h1>", "Test send email to me goses 1000")
+	if err != nil {
+
+		fmt.Printf("Error %s => %v\n", err)
+	}
 }

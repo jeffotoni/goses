@@ -155,7 +155,7 @@ func SetProfile(
 	return prof
 }
 
-func (pf *profile) Send(EmailTo string, Html string, Subject string) {
+func (pf *profile) Send(EmailTo string, Html string, Subject string) error {
 
 	params := &ses.SendEmailInput{
 
@@ -213,10 +213,12 @@ func (pf *profile) Send(EmailTo string, Html string, Subject string) {
 
 	if err != nil {
 
-		fmt.Printf("Error %s => %v\n", EmailTo, err)
+		//fmt.Printf("Error %s => %v\n", EmailTo, err)
+		return err
 
 	} else {
 
-		fmt.Printf("Send success %s\n", EmailTo)
+		//fmt.Printf("Send success %s\n", EmailTo)
+		return nil
 	}
 }
