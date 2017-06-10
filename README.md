@@ -15,11 +15,9 @@ it will Also need your Identity ARN.
 
 ![image](https://github.com/jeffotoni/goses/blob/master/img/identity-arn.png)
 
-
-# Examples of submissions
+# SetProfile is required
 
 ```go
-
 //
 //
 //
@@ -40,6 +38,12 @@ S := gses.SetProfile(
 
 	"Info Lets test send email ses..",
 )
+
+```
+
+# Example 1 of submission
+
+```go
 
 //
 // EmailTo 		:= "emailTo@domain.com"
@@ -62,6 +66,13 @@ if err != nil {
 	fmt.Println("Send Sucess")
 }
 
+
+```
+# Example 2 of submission
+
+```go
+
+# Example 2 of submission
 //
 // EmailTo 		:= "emailTo@domain.com"
 // Html 		:= "<html><body><h1>test html context</h1></body></html>"
@@ -86,6 +97,12 @@ if err != nil {
 
 	fmt.Println("Send Sucess")
 }
+
+```
+
+# Example 3 of submission
+
+```go
 
 //
 // EmailTo 		:= "emailTo@domain.com"
@@ -113,6 +130,11 @@ if err != nil {
 
 	fmt.Println("Send Sucess")
 }
+
+```
+# Example 4 of submission
+
+```go
 
 //
 // EmailTo 		:= "emailTo@domain.com"
@@ -142,6 +164,11 @@ if err != nil {
 
 	fmt.Println("Send Sucess")
 }
+
+```
+# Example 5 of submission
+
+```go
 
 //
 // EmailTo 		:= "emailTo1@domain.com,emailTo2@domain.com,emailTo3@domain.com"
