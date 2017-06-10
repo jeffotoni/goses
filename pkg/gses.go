@@ -183,6 +183,16 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 	//
 	//
 	//
+	CcAddressesMail := []*string{}
+
+	//
+	//
+	//
+	BccAddressesMail := []*string{}
+
+	//
+	//
+	//
 	EmailTo = strings.Trim(EmailTo, " ")
 
 	//
@@ -203,60 +213,91 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 		ToAddressesMail = append(ToAddressesMail, aws.String(mailClean))
 	}
 
-	// os.Exit(1)
+	//
+	//
+	//
+	if Cc != "" {
 
-	if Cc != "" && Bc == "" {
+		//
+		//
+		//
+		Cc = strings.Trim(Cc, " ")
 
-		vCc := []*string{
+		//
+		//
+		//
+		arrayMailCc := strings.Split(Cc, ",")
 
-			aws.String(Cc), // Required
-			// More values...
+		for i := range arrayMailCc {
+
+			//
+			//
+			//
+			mailCcClean := strings.TrimSpace(arrayMailCc[i])
+
+			//
+			//
+			//
+			CcAddressesMail = append(CcAddressesMail, aws.String(mailCcClean))
 		}
+	}
+
+	//
+	//
+	//
+	if Bc != "" {
+
+		//
+		//
+		//
+		Bc = strings.Trim(Bc, " ")
+
+		//
+		//
+		//
+		arrayMailBCc := strings.Split(Bc, ",")
+
+		for i := range arrayMailBCc {
+
+			//
+			//
+			//
+			mailBccClean := strings.TrimSpace(arrayMailBCc[i])
+
+			//
+			//
+			//
+			BccAddressesMail = append(BccAddressesMail, aws.String(mailBccClean))
+		}
+	}
+
+	//
+	//
+	//
+	if Cc != "" && Bc == "" {
 
 		DestinationV = &ses.Destination{ // Required
 
-			//BccAddresses: vBc,
-
-			CcAddresses: vCc,
+			CcAddresses: CcAddressesMail,
 
 			ToAddresses: ToAddressesMail,
 		}
 
 	} else if Cc == "" && Bc != "" {
 
-		vBc := []*string{
-
-			aws.String(Bc), // Required
-			// More values...
-		}
-
 		DestinationV = &ses.Destination{ // Required
 
-			BccAddresses: vBc,
-
-			//CcAddresses: vCc,
+			BccAddresses: BccAddressesMail,
 
 			ToAddresses: ToAddressesMail,
 		}
 	} else if Cc != "" && Bc != "" {
 
-		vBc := []*string{
-
-			aws.String(Bc), // Required
-			// More values...
-		}
-
-		vCc := []*string{
-
-			aws.String(Cc), // Required
-			// More values...
-		}
-
 		DestinationV = &ses.Destination{ // Required
 
-			BccAddresses: vBc,
+			BccAddresses: BccAddressesMail,
 
-			CcAddresses: vCc,
+			CcAddresses: CcAddressesMail,
 
 			ToAddresses: ToAddressesMail,
 		}
