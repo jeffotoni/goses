@@ -16,7 +16,7 @@ it will Also need your Identity ARN.
 ![image](https://github.com/jeffotoni/goses/blob/master/img/identity-arn.png)
 
 
-# Methods
+# Examples of submissions
 
 ```go
 
