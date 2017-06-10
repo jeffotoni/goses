@@ -17,6 +17,7 @@ package gses
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
@@ -155,9 +156,54 @@ func SetProfile(
 	return prof
 }
 
+//
+// EmailTo string, Cc string, Bc string, Html string, Subject string
+//
 func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subject string) error {
 
+	//
+	//
+	//
+	if EmailTo == "" {
+
+		fmt.Println("Error EmailTo Required")
+		os.Exit(1)
+	}
+
+	//
+	//
+	//
 	DestinationV := &ses.Destination{}
+
+	//
+	//
+	//
+	ToAddressesMail := []*string{}
+
+	//
+	//
+	//
+	EmailTo = strings.Trim(EmailTo, " ")
+
+	//
+	//
+	//
+	arrayMailTo := strings.Split(EmailTo, ",")
+
+	for i := range arrayMailTo {
+
+		//
+		//
+		//
+		mailClean := strings.TrimSpace(arrayMailTo[i])
+
+		//
+		//
+		//
+		ToAddressesMail = append(ToAddressesMail, aws.String(mailClean))
+	}
+
+	// os.Exit(1)
 
 	if Cc != "" && Bc == "" {
 
@@ -173,12 +219,7 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 
 			CcAddresses: vCc,
 
-			ToAddresses: []*string{
-
-				aws.String(EmailTo), // Required
-
-				// More values...
-			},
+			ToAddresses: ToAddressesMail,
 		}
 
 	} else if Cc == "" && Bc != "" {
@@ -195,12 +236,7 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 
 			//CcAddresses: vCc,
 
-			ToAddresses: []*string{
-
-				aws.String(EmailTo), // Required
-
-				// More values...
-			},
+			ToAddresses: ToAddressesMail,
 		}
 	} else if Cc != "" && Bc != "" {
 
@@ -222,28 +258,21 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 
 			CcAddresses: vCc,
 
-			ToAddresses: []*string{
-
-				aws.String(EmailTo), // Required
-
-				// More values...
-			},
+			ToAddresses: ToAddressesMail,
 		}
 	} else {
 
 		DestinationV = &ses.Destination{ // Required
 
-			ToAddresses: []*string{
-
-				aws.String(EmailTo), // Required
-
-				// More values...
-			},
+			ToAddresses: ToAddressesMail,
 		}
 	}
 
 	params := &ses.SendEmailInput{
 
+		//
+		//
+		//
 		Destination: DestinationV,
 
 		Message: &ses.Message{ // Required
