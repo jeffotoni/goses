@@ -19,7 +19,9 @@ it will Also need your Identity ARN.
 # Install
 
 go get github.com/aws/aws-sdk-go/aws
+
 go get github.com/aws/aws-sdk-go/service
+
 go get github.com/jeffotoni/goses/pkg
 
 # SetProfile is required
