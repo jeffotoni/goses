@@ -16,8 +16,9 @@ package main
 
 import (
 	"fmt"
-	//import gses "github.com/jeffotoni/goses/pkg"
-	gses "./pkg"
+
+	gses "github.com/jeffotoni/goses/pkg"
+	//gses "./pkg"
 )
 
 func main() {
