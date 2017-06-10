@@ -39,7 +39,7 @@ func main() {
 	err := S.Send("emailTo@domain.com", "", "emailCc@domain.com", "<h1>Test send email....</h1>", "Test send email to me goses 1002")
 	if err != nil {
 
-		fmt.Printf("Error %s => %v\n", err)
+		fmt.Printf("Error %v\n", err)
 
 	} else {
 
