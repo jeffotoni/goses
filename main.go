@@ -51,26 +51,25 @@ func main() {
 	// Subject 		:= "Your message title"
 	//
 
-	// err = S.Send(
-	// 		"emailTo@domain.com",
+	err = S.Send(
+		"emailTo@domain.com",
 
-	// 		"emailCc@domain.com",
+		"emailCc@domain.com",
 
-	// 		"emailBcc@domain.com",
+		"emailBcc@domain.com",
 
-	// 		"<h1>Test send email....</h1>",
+		"<h1>Test send email....</h1>",
 
-	// 		"Test send email to me goses 1002",
+		"Test send email to me goses 1002",
+	)
+	if err != nil {
 
-	// 		)
-	// if err != nil {
+		fmt.Printf("Error %v\n", err)
 
-	// 	fmt.Printf("Error %v\n", err)
+	} else {
 
-	// } else {
-
-	// 	fmt.Println("Send Sucess")
-	// }
+		fmt.Println("Send Sucess")
+	}
 
 	//
 	// EmailTo 		:= "emailTo1@domain.com,emailTo2@domain.com,emailTo3@domain.com"
