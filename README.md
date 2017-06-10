@@ -30,7 +30,16 @@ var err error
 //
 // "us-east-1", "IdentityArn Here", "emailFrom@domain.com", "Lets test send email ses.."
 //
-S := gses.SetProfile("us-east-1", "IdentityArn Here", "from@domain.com", "Info Lets test send email ses..")
+S := gses.SetProfile(
+
+		"us-east-1",
+
+		"IdentityArn Here",
+
+		"from@domain.com",
+
+		"Info Lets test send email ses..",
+	)
 
 //
 // EmailTo 		:= "emailTo@domain.com"
@@ -39,7 +48,7 @@ S := gses.SetProfile("us-east-1", "IdentityArn Here", "from@domain.com", "Info L
 // Html 		:= "<html><body><h1>test html context</h1></body></html>"
 // Subject 		:= "Your message title"
 //
-err := S.Send(
+err = S.Send(
 		"emailTo@domain.com", 
 
 		"emailCc@domain.com", 
@@ -61,9 +70,9 @@ if err != nil {
 }
 
 //
-// EmailTo 		:= "emailTo@domain.com"
-// EmailCC 		:= "emailCc@domain.com"
-// EmailBc 		:= "emailBcc@domain.com"
+// EmailTo 		:= "emailTo1@domain.com,emailTo2@domain.com,emailTo3@domain.com"
+// EmailCC 		:= "emailCc1@domain.com,emailCc2@domain.com"
+// EmailBc 		:= "emailBcc1@domain.com,emailBcc2@domain.com"
 // Html 		:= "<html><body><h1>test html context</h1></body></html>"
 // Subject 		:= "Your message title"
 //
