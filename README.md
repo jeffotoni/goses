@@ -8,7 +8,13 @@ Emails with copy and hidden will be implemented in another method.
 
 We created a package called gses (golang SES), which creates and mounts all objects so that we can send our email successfully.
 
-In order for your email to be sent successfully using the aws sdk you need to have an email validated by SES (Verify This Email Address), console access can be done by clicking here https://console.aws.amazon.com/ses, it will Also need your Identity RNA.
+In order for your email to be sent successfully using the aws sdk you need to have an email validated by SES (Verify This Email Address), console access can be done by clicking here https://console.aws.amazon.com/ses, 
+it will Also need your Identity ARN.
+
+# Verify This Email Address - SES Example
+
+![image](https://github.com/jeffotoni/goses/blob/master/img/identity-arn.png)
+
 
 # Methods
 
