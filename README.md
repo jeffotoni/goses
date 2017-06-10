@@ -15,6 +15,13 @@ it will Also need your Identity ARN.
 
 ![image](https://github.com/jeffotoni/goses/blob/master/img/identity-arn.png)
 
+
+# Install
+
+go get github.com/aws/aws-sdk-go/aws
+go get github.com/aws/aws-sdk-go/service
+go get github.com/jeffotoni/goses/pkg
+
 # SetProfile is required
 
 ```go
