@@ -159,7 +159,83 @@ func SetProfile(
 //
 // EmailTo string, Cc string, Bc string, Html string, Subject string
 //
-func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subject string) error {
+//func (pf *profile) Send(EmailTo string, Html string, Subject string, Cc string, Bcc string) error {
+func (pf *profile) Send(paramses ...string) error {
+
+	var EmailTo string
+	var Cc string
+	var Bcc string
+	var Html string
+	var Subject string
+
+	if len(paramses) > 0 && len(paramses) <= 5 {
+
+		if len(paramses) == 5 {
+
+			EmailTo = paramses[0]
+
+			Html = paramses[1]
+
+			Subject = paramses[2]
+
+			Cc = paramses[3]
+
+			Bcc = paramses[4]
+
+		} else if len(paramses) == 4 {
+
+			EmailTo = paramses[0]
+
+			Html = paramses[1]
+
+			Subject = paramses[2]
+
+			Cc = paramses[3]
+
+			Bcc = ""
+
+		} else if len(paramses) == 3 {
+
+			EmailTo = paramses[0]
+
+			Html = paramses[1]
+
+			Subject = paramses[2]
+
+			Cc = ""
+
+			Bcc = ""
+
+		} else if len(paramses) == 2 {
+
+			EmailTo = paramses[0]
+
+			Html = paramses[1]
+
+			Subject = ""
+
+			Cc = ""
+
+			Bcc = ""
+
+		} else if len(paramses) == 1 {
+
+			EmailTo = paramses[0]
+
+			Html = ""
+
+			Subject = ""
+
+			Cc = ""
+
+			Bcc = ""
+		}
+
+	} else {
+
+		fmt.Println("Error Parameters is missing")
+		os.Exit(1)
+	}
 
 	//
 	//
@@ -245,17 +321,17 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 	//
 	//
 	//
-	if Bc != "" {
+	if Bcc != "" {
 
 		//
 		//
 		//
-		Bc = strings.Trim(Bc, " ")
+		Bcc = strings.Trim(Bcc, " ")
 
 		//
 		//
 		//
-		arrayMailBCc := strings.Split(Bc, ",")
+		arrayMailBCc := strings.Split(Bcc, ",")
 
 		for i := range arrayMailBCc {
 
@@ -274,7 +350,7 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 	//
 	//
 	//
-	if Cc != "" && Bc == "" {
+	if Cc != "" && Bcc == "" {
 
 		DestinationV = &ses.Destination{ // Required
 
@@ -283,7 +359,7 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 			ToAddresses: ToAddressesMail,
 		}
 
-	} else if Cc == "" && Bc != "" {
+	} else if Cc == "" && Bcc != "" {
 
 		DestinationV = &ses.Destination{ // Required
 
@@ -291,7 +367,7 @@ func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subje
 
 			ToAddresses: ToAddressesMail,
 		}
-	} else if Cc != "" && Bc != "" {
+	} else if Cc != "" && Bcc != "" {
 
 		DestinationV = &ses.Destination{ // Required
 
