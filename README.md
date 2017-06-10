@@ -43,6 +43,34 @@ S := gses.SetProfile(
 
 //
 // EmailTo 		:= "emailTo@domain.com"
+// EmailCC 		:= --
+// EmailBc 		:= --
+// Html 		:= "<html><body><h1>test html context</h1></body></html>"
+// Subject 		:= "Your message title"
+//
+
+err = S.Send(
+	"emailTo@domain.com",
+
+	"",
+
+	"",
+
+	"<h1>Test send email....</h1>",
+
+	"Test send email to me goses 1002",
+)
+if err != nil {
+
+	fmt.Printf("Error %v\n", err)
+
+} else {
+
+	fmt.Println("Send Sucess")
+}
+
+//
+// EmailTo 		:= "emailTo@domain.com"
 // EmailCC 		:= "emailCc@domain.com"
 // EmailBc 		:= "emailBcc@domain.com"
 // Html 		:= "<html><body><h1>test html context</h1></body></html>"
