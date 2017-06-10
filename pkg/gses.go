@@ -155,20 +155,23 @@ func SetProfile(
 	return prof
 }
 
-func (pf *profile) Send(EmailTo string, Html string, Subject string) error {
+func (pf *profile) Send(EmailTo string, Cc string, Bc string, Html string, Subject string) error {
 
-	params := &ses.SendEmailInput{
+	DestinationV := &ses.Destination{}
 
-		Destination: &ses.Destination{ // Required
+	if Cc != "" && Bc == "" {
 
-			// BccAddresses: []*string{
-			//     aws.String("teste@s3wf.com.br"), // Required
-			//     // More values...
-			// },
-			// CcAddresses: []*string{
-			//     aws.String("teste@s3wf.com.br"), // Required
-			//     // More values...
-			// },
+		vCc := []*string{
+
+			aws.String(Cc), // Required
+			// More values...
+		}
+
+		DestinationV = &ses.Destination{ // Required
+
+			//BccAddresses: vBc,
+
+			CcAddresses: vCc,
 
 			ToAddresses: []*string{
 
@@ -176,7 +179,73 @@ func (pf *profile) Send(EmailTo string, Html string, Subject string) error {
 
 				// More values...
 			},
-		},
+		}
+
+	} else if Cc == "" && Bc != "" {
+
+		vBc := []*string{
+
+			aws.String(Bc), // Required
+			// More values...
+		}
+
+		DestinationV = &ses.Destination{ // Required
+
+			BccAddresses: vBc,
+
+			//CcAddresses: vCc,
+
+			ToAddresses: []*string{
+
+				aws.String(EmailTo), // Required
+
+				// More values...
+			},
+		}
+	} else if Cc != "" && Bc != "" {
+
+		vBc := []*string{
+
+			aws.String(Bc), // Required
+			// More values...
+		}
+
+		vCc := []*string{
+
+			aws.String(Cc), // Required
+			// More values...
+		}
+
+		DestinationV = &ses.Destination{ // Required
+
+			BccAddresses: vBc,
+
+			CcAddresses: vCc,
+
+			ToAddresses: []*string{
+
+				aws.String(EmailTo), // Required
+
+				// More values...
+			},
+		}
+	} else {
+
+		DestinationV = &ses.Destination{ // Required
+
+			ToAddresses: []*string{
+
+				aws.String(EmailTo), // Required
+
+				// More values...
+			},
+		}
+	}
+
+	params := &ses.SendEmailInput{
+
+		Destination: DestinationV,
+
 		Message: &ses.Message{ // Required
 			Body: &ses.Body{ // Required
 				Html: &ses.Content{
